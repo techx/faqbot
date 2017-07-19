@@ -1,0 +1,2 @@
+flanker == 0.4.38
+imaplib2 == 2.45.0
