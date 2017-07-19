@@ -1,3 +1,9 @@
+'''
+    This was written by Shreyas Kapur in collaboration with 
+    Michael Kaminsky
+    https://github.com/mkaminsky11
+'''
+
 from config import *
 from faq import *
 import email
