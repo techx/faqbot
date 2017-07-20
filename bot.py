@@ -6,6 +6,7 @@
 
 from config import *
 from faq import *
+import quill
 import email
 from email.utils import getaddresses, parseaddr
 from email.mime.text import MIMEText
@@ -105,8 +106,10 @@ class Idler(object):
                     body = part.body.encode('ascii', 'ignore')
                     break
 
-            if body.startswith(TRIGGER) and "From" in email_message:
+            # CR-LF ugh
+            body = body.replace('\r', '')
 
+            if body.startswith(TRIGGER) and "From" in email_message:
                 if len(body.split(' ')) >= 2:
                     command = body.split(' ')[1].strip()
 
@@ -121,10 +124,28 @@ class Idler(object):
                 ccs = email_message.get_all('cc', [])
                 all_recipients = getaddresses(tos + ccs) + [parseaddr(email_message["Reply-To"] or email_message["From"])]
 
-                if command not in COMMANDS:
-                    return
+                if command.startswith('whitelist'):
+                    # Compute the whitelist email
+                    wl_email = None
+                    for line in body.split('\n'):
+                        if line.startswith(TRIGGER):
+                            tokens = line.split(' ')
+                            if len(tokens) >= 3:
+                                wl_email = tokens[2]
 
-                content = COMMANDS[command] + FOOTER
+                    if not wl_email:
+                        return
+
+                    print "Whitelist Email:", wl_email
+
+                    # Post to quill
+                    quill.post_wl(quill.get_wl() + [wl_email])
+
+                    content = COMMANDS['whitelist'].format(email=wl_email) + FOOTER
+                else:
+                    if command not in COMMANDS:
+                        return
+                    content = COMMANDS[command] + FOOTER
 
                 reply_sujet = "Re: " + email_message["Subject"] if not email_message['Subject'].startswith('Re:') else email_message["Subject"]
                 recipients = []

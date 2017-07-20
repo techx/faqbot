@@ -1,2 +1,3 @@
 flanker == 0.4.38
 imaplib2 == 2.45.0
+validate-email==1.3

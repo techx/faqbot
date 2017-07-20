@@ -24,6 +24,10 @@ TRIGGER = "@faqbot"
 SEND_MAIL_USER = MAIL_USER
 SEND_MAIL_PASSWORD = MAIL_PASSWORD
 MAIL_FROM = "team@hackmit.org"
+
+# Quill stuff
+ENDPOINT = "https://my.hackmit.org/api/settings/whitelist"
+ACCESS_TOKEN = "" # JWT from quill admin
 ```
 
 For HackMIT grab it from the TechX Google Drive

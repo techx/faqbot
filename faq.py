@@ -13,6 +13,19 @@ COMMANDS = {
 
 	Thank you for your interest!<br><br>
 
+	Best <br>
+	Hackbot <br>
+
+	""",
+	'whitelist': """
+
+	Hi! <br><br>
+
+	We've whitelisted the email address {email}. You can now use this for registration! <br><br>
+
+	Best <br>
+	Hackbot <br>
+
 	"""
 }
 
