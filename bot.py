@@ -101,10 +101,19 @@ class Idler(object):
 
             body = "null"
 
-            for part in flanker_msg.parts:
-                if part.body.encode('ascii', 'ignore').startswith(TRIGGER):
-                    body = part.body.encode('ascii', 'ignore')
-                    break
+            try:
+                for part in flanker_msg.parts:
+                    if part.body.encode('ascii', 'ignore').startswith(TRIGGER):
+                        body = part.body.encode('ascii', 'ignore')
+                        break
+            except Exception as e:
+                pass
+
+            # If body is still null, just look for this stuff
+            if body == "null":
+                for l in raw_email.split('\n'):
+                    if l.startswith(TRIGGER):
+                        body = l
 
             # CR-LF ugh
             body = body.replace('\r', '')
