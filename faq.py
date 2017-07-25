@@ -31,8 +31,8 @@ COMMANDS = {
 
 	Hi! <br><br>
 
-	Thanks for reaching out! We get this question a lot, and it’s quite common for teams to be mixed MIT/non-MIT. <br><br>
-	
+	Thanks for reaching out! We get this question a lot, and it's quite common for teams to be mixed MIT/non-MIT. <br><br>
+
 	The MIT students will be guaranteed a spot at HackMIT, while the rest of the team will be admitted as a unit via our admission process (although not guaranteed admission). There's nothing special other than having each person join the same team in our registration system! <br><br>
 
 	Hope that helps,<br>
