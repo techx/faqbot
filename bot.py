@@ -116,6 +116,8 @@ class Idler(object):
                     # Ugly custom rule
                     if command.startswith('edu'):
                         command = "edu"
+                    if command.startswith('mixed'):
+                        command = "mixed"
                 else:
                     command = "faq"
 
