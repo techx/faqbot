@@ -10,6 +10,20 @@ For now, reply-one to any email to `admin@hackmit.org` with the body text:
 @faqbot edu
 ```
 
+This will reply to the person a generic response to "I don't have an educational email"
+
+```
+@faqbot whitelist [email]
+```
+
+This will whitelist the given email in quill and reply to the person.
+
+```
+@faqbot mixed
+```
+
+This will reply to the person a generic response to "What if I have both MIT and other people in my team?"
+
 ### Config
 
 The `config.py` template:
@@ -51,3 +65,7 @@ To run on production,
 ```bash
 python run.py
 ```
+
+### Security
+
+As of now, the bot is secure as long as the spec doesn't leak. If it leaks, we can easily trace the attack. tldr; keep the spec safe, but not a big deal if it leaks.
