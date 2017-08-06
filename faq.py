@@ -38,6 +38,26 @@ COMMANDS = {
 	Hope that helps,<br>
 	Michael<br>
 
+	""",
+	'lateteam': """
+	Hi, <br><br>
+
+	Thanks for reaching out! Unfortunately registration is now closed and we cannot make changes to teams. The good news is this only affects admissions. So, if everyone gets admitted, you are welcome to hack together at the event! <br><br>
+
+	Cheers,<br>
+	Hackbot<br>
+	""",
+	'latereg': """
+	Hi, <br><br>
+
+	Thanks for reaching out! Unfortunately registration is now closed. We had 24-hour grace period for stragglers, but now that that period is over, we have begun the admissions process and cannot accept any more applications. <br><br>
+
+	If you are in the Boston area, you are welcome to show up early on the morning of the event to attempt walk-on admission. Walk on tends to be crowded and are not guaranteed, so make sure to arrive early with your government and student IDs! <br><br>
+
+	Otherwise, look out for applications to HackMIT 2018 next year!<br><br>
+
+	Cheers,<br>
+	Hackbot
 	"""
 }
 

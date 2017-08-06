@@ -127,6 +127,12 @@ class Idler(object):
                         command = "edu"
                     if command.startswith('mixed'):
                         command = "mixed"
+
+                    # Hacky
+                    for c in COMMANDS.keys():
+                        if command.startswith(c):
+                            command = c
+                            break
                 else:
                     command = "faq"
 
