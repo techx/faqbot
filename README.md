@@ -6,6 +6,8 @@ A bot that replies with predefined templates to FAQ emails.
 
 For now, reply-one to any email to `admin@hackmit.org` with the body text:
 
+[Full List of Commands](https://github.com/techx/faq-bot/blob/master/faq.py)
+
 ```
 @faqbot edu
 ```
@@ -23,6 +25,8 @@ This will whitelist the given email in quill and reply to the person.
 ```
 
 This will reply to the person a generic response to "What if I have both MIT and other people in my team?"
+
+
 
 ### Config
 
