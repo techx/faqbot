@@ -36,7 +36,7 @@ COMMANDS = {
 	The MIT students will be guaranteed a spot at HackMIT, while the rest of the team will be admitted as a unit via our admission process (although not guaranteed admission). There's nothing special other than having each person join the same team in our registration system! <br><br>
 
 	Hope that helps,<br>
-	Michael<br>
+	Hackbot<br>
 
 	""",
 	'lateteam': """
