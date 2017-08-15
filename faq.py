@@ -74,5 +74,5 @@ COMMANDS = {
 }
 
 FOOTER = """
-<i>~~ This was an automated message, please <a href="mailto:team@hackmit.org">email us</a> again if this didn't help! ~~</i>
+<br> <i>~~ This was an automated message, please <a href="mailto:team@hackmit.org">email us</a> again if this didn't help! ~~</i>
 """
