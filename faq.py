@@ -58,6 +58,18 @@ COMMANDS = {
 
 	Cheers,<br>
 	Hackbot
+	""",
+	'lateconfirm': """
+	Hi, <br><br>
+
+	Thanks for reaching out! Unfortunately the deadline for confirming your acceptance to HackMIT has passed. We had much more interest in HackMIT than we have space, so unfortunately cannot allow you to confirm your acceptance late. Sorry about that!<br><br>
+
+	If you are in the Boston area, you are welcome to show up early on the morning of the event to attempt walk-on admission. Walk on tends to be crowded and are not guaranteed, so make sure to arrive early with your government and student IDs! <br><br>
+
+	Otherwise, look out for applications to HackMIT 2018 next year!<br><br>
+
+	Cheers,<br>
+	Hackbot <br>
 	"""
 }
 
