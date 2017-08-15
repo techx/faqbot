@@ -14,7 +14,7 @@ COMMANDS = {
 	Thank you for your interest!<br><br>
 
 	Best <br>
-	Hackbot <br>
+	Hackbot
 
 	""",
 	'whitelist': """
@@ -24,7 +24,7 @@ COMMANDS = {
 	We've whitelisted the email address {email}. You can now use this for registration! <br><br>
 
 	Best <br>
-	Hackbot <br>
+	Hackbot
 
 	""",
 	'mixed': """
@@ -36,7 +36,7 @@ COMMANDS = {
 	The MIT students will be guaranteed a spot at HackMIT, while the rest of the team will be admitted as a unit via our admission process (although not guaranteed admission). There's nothing special other than having each person join the same team in our registration system! <br><br>
 
 	Hope that helps,<br>
-	Hackbot<br>
+	Hackbot
 
 	""",
 	'lateteam': """
@@ -45,7 +45,7 @@ COMMANDS = {
 	Thanks for reaching out! Unfortunately registration is now closed and we cannot make changes to teams. The good news is this only affects admissions. So, if everyone gets admitted, you are welcome to hack together at the event! <br><br>
 
 	Cheers,<br>
-	Hackbot<br>
+	Hackbot
 	""",
 	'latereg': """
 	Hi, <br><br>
@@ -69,7 +69,7 @@ COMMANDS = {
 	Otherwise, look out for applications to HackMIT 2018 next year!<br><br>
 
 	Cheers,<br>
-	Hackbot <br>
+	Hackbot 
 	"""
 }
 
