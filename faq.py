@@ -23,7 +23,7 @@ COMMANDS = {
 
 	We've whitelisted the email address {email}. You can now use this for registration! <br><br>
 
-	Best <br>
+	Best,<br>
 	Hackbot
 
 	""",
@@ -70,6 +70,16 @@ COMMANDS = {
 
 	Cheers,<br>
 	Hackbot 
+	""",
+	'travel': """
+	Hi there,<br><br>
+	
+	We're processing travel reimbursements right now!<br>
+	If you received an email confirming your reimbursement, you're all set.
+	We'll email out when we mail all the checks.<br><br>
+	
+	Best,<br>
+	Hackbot
 	"""
 }
 
