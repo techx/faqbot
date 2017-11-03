@@ -141,6 +141,15 @@ class Idler(object):
                 ccs = email_message.get_all('cc', [])
                 all_recipients = getaddresses(tos + ccs) + [parseaddr(email_message["Reply-To"] or email_message["From"])]
 
+                if command.startswith('template'):
+                    lines = body.strip().split('\n')
+                    new_command = lines[0].split()[2]
+                    content = '<br>\n'.join(lines[1:])
+                    print 'Request from {} for new command {} with body:'.format(email_message["From"], new_command)
+                    print content
+                    custom_commands[new_command] = content
+                    return
+
                 if command.startswith('whitelist'):
                     # Compute the whitelist email
                     wl_email = None
@@ -160,9 +169,12 @@ class Idler(object):
 
                     content = COMMANDS['whitelist'].format(email=wl_email) + FOOTER
                 else:
-                    if command not in COMMANDS:
+                    if command in COMMANDS:
+                        content = COMMANDS[command] + FOOTER
+                    elif command in custom_commands:
+                        content = custom_commands[command] + FOOTER
+                    else:
                         return
-                    content = COMMANDS[command] + FOOTER
 
                 reply_sujet = "Re: " + email_message["Subject"] if not email_message['Subject'].startswith('Re:') else email_message["Subject"]
                 recipients = []
