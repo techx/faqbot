@@ -12,6 +12,7 @@ from email.utils import getaddresses, parseaddr
 from email.mime.text import MIMEText
 import smtplib
 from flanker import mime
+from web import app
 
 import imaplib2, time
 from threading import *
@@ -203,6 +204,10 @@ class Idler(object):
                 s.sendmail(MAIL_FROM, recipients, msg.as_string())
                 s.quit()
 
+import os
+if not os.path.exists('faq.pkl'):
+    pickle_faq()
+
 # Set the following two lines to your creds and server
 mail = imaplib2.IMAP4_SSL(IMAP_SERVER)
 mail.login(MAIL_USER, MAIL_PASSWORD)
@@ -222,12 +227,14 @@ idler.start()
 
 print "Client started on {}, waiting for emails.".format(MAIL_USER)
 
-while True:
-    try:
-        time.sleep(0.3)
-    except KeyboardInterrupt:
-        print "Bye"
-        break
+# while True:
+#     try:
+#         time.sleep(0.3)
+#     except KeyboardInterrupt:
+#         print "Bye"
+#         break
+
+app.run(host='0.0.0.0', port=80, debug=True)
 
 idler.stop()
 idler.join()

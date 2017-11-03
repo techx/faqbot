@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FaqBot Control Panel</title>
+</head>
+<body>
+    <form action="" method="POST">
+        Key:   <input type="text" name="key">
+        Value: <textarea name="value" class="ta" rows="7" cols="60"></textarea>
+        <p class="error">{{ error }}</p>
+        <button name="s" value="s" class="ui button sb">
+          Submit
+        </button>
+    </form>
+    {% for key, value in templates.items() %}
+        <p>Key: {{ key }}</p>
+        <p>{{ value }}</p>
+    {% endfor %}
+</body>
+</html>
