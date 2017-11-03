@@ -13,7 +13,7 @@ COMMANDS = {
 
 	Thank you for your interest!<br><br>
 
-	Best <br>
+	Best,<br>
 	Hackbot
 
 	""",
@@ -84,5 +84,5 @@ COMMANDS = {
 }
 
 FOOTER = """
-<br> <i>~~ This was an automated message, please <a href="mailto:team@hackmit.org">email us</a> again if this didn't help! ~~</i>
+<br><br> <i>~~ This was an automated message, please <a href="mailto:team@hackmit.org">email us</a> again if this didn't help! ~~</i>
 """
