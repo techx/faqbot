@@ -5,7 +5,7 @@
 '''
 
 from config import *
-from faq import *
+#from faq import *
 import quill
 import email
 from email.utils import getaddresses, parseaddr
@@ -16,6 +16,9 @@ from flanker import mime
 import imaplib2, time
 from threading import *
 import email_finder
+
+import pickle
+from commands import *
 
 class Idler(object):
     def __init__(self, conn, last_id):
@@ -147,7 +150,8 @@ class Idler(object):
                     content = '<br>\n'.join(lines[1:])
                     print 'Request from {} for new command {} with body:'.format(email_message["From"], new_command)
                     print content
-                    custom_commands[new_command] = content
+                    COMMANDS[new_command] = content
+                    save_commands(COMMANDS)
                     return
 
                 if command.startswith('whitelist'):
@@ -169,12 +173,9 @@ class Idler(object):
 
                     content = COMMANDS['whitelist'].format(email=wl_email) + FOOTER
                 else:
-                    if command in COMMANDS:
-                        content = COMMANDS[command] + FOOTER
-                    elif command in custom_commands:
-                        content = custom_commands[command] + FOOTER
-                    else:
+                    if command not in COMMANDS:
                         return
+                    content = COMMANDS[command] + FOOTER
 
                 reply_sujet = "Re: " + email_message["Subject"] if not email_message['Subject'].startswith('Re:') else email_message["Subject"]
                 recipients = []
@@ -214,11 +215,13 @@ ids = data[0]
 id_list = ids.split()
 latest_email_id = id_list[-1]
 
+COMMANDS = load_commands()
 
 idler = Idler(mail, latest_email_id)
 idler.start()
 
 print "Client started on {}, waiting for emails.".format(MAIL_USER)
+
 while True:
     try:
         time.sleep(0.3)
