@@ -122,6 +122,8 @@ class Idler(object):
             # CR-LF ugh
             body = body.replace('\r', '')
 
+            COMMANDS = load_commands()
+
             if body.startswith(TRIGGER) and "From" in email_message:
                 if len(body.split(' ')) >= 2:
                     command = body.split(' ')[1].strip()
