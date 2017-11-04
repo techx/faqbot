@@ -46,6 +46,14 @@ MAIL_FROM = "team@hackmit.org"
 # Quill stuff
 ENDPOINT = "https://my.hackmit.org/api/settings/whitelist"
 ACCESS_TOKEN = "" # JWT from quill admin
+
+# Admin password
+ADMIN_PASSWORD = ''
+
+# Footer
+FOOTER = """
+<br><br> <i>This is a cute footer.</i>
+"""
 ```
 
 For HackMIT grab it from the TechX Google Drive
