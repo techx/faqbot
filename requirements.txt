@@ -1,3 +1,5 @@
-flanker == 0.4.38
-imaplib2 == 2.45.0
+flanker==0.4.38
+Flask==0.12.2
+imaplib2==2.45.0
+requests==2.18.4
 validate-email==1.3
