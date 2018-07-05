@@ -10,16 +10,27 @@ def main():
         # If it's a get, display the huy
         return render_template("home.html", templates=load_commands(), error="")
     if request.method == 'POST':
-        if 'key' not in request.form:
-            return "No Key!", 400
-        if 'value' not in request.form:
-            return "No Value!", 400
+        if request.form['actiontype'] == 'add':
+            if 'key' not in request.form:
+                return "No Key!", 400
+            if 'value' not in request.form:
+                return "No Value!", 400
 
-        key = request.form['key']
-        value = request.form['value']
+            key = request.form['key']
+            value = request.form['value']
 
-        templates = load_commands()
-        templates[key] = value
-        save_commands(templates)
+            templates = load_commands()
+            templates[key] = value
+            save_commands(templates)
+        elif request.form['actiontype'] == 'delete':
+            if 'key' not in request.form:
+                return "No Key!", 400
 
-        return render_template("home.html", templates=load_commands(), error="")
+            key = request.form['key']
+
+            templates = load_commands()
+            templates.pop(key, None)
+            save_commands(templates)
+            
+        return render_template("home.html", templates=load_commands(), error="")    
+        
