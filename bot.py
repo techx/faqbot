@@ -236,7 +236,8 @@ print "Client started on {}, waiting for emails.".format(MAIL_USER)
 #         print "Bye"
 #         break
 
-app.run(host='0.0.0.0', port=8114, debug=True)
+# set debug to false to prevent multiple instances of faqbot on production
+app.run(host='0.0.0.0', port=8114, debug=False)
 
 idler.stop()
 idler.join()
