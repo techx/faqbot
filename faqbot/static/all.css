@@ -1,0 +1,28 @@
+body head {
+  width: 100%;
+}
+
+.all-page {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hi {
+  font-family: 'Bitter';
+  font-weight: bold;
+  font-size: 3em;
+}
+
+.error {
+  color: red;
+  font-family: 'Open Sans';
+  font-size: 1.2em;
+}
+
+.pw-box {
+  width: 20rem;
+}

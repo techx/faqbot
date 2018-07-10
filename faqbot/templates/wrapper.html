@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Stylesheets -->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='vendor/normalize/normalize.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='vendor/semantic/semantic.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='all.css') }}?v=0.4.1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Open+Sans" rel="stylesheet">
+
+    <!-- Javascript Libraries -->
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/semantic/semantic.min.js') }}"></script>
+
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>{% block title %}{% endblock %} &middot; {{ config['APP_NAME'] }}</title>
+    {% block head %}
+    {% endblock %}
+
+    {% block meta %}
+    {% endblock %}
+  </head>
+  <body>
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <div class="footer">
+        
+    </div>
+    {% block end %}
+    {% endblock %}
+  </body>
+</html>
+

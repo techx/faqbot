@@ -1,4 +1,4 @@
 config.py
 *.pyc
-faq.pkl
+*.pkl
 env/

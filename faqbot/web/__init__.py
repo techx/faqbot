@@ -1,0 +1,1 @@
+import faqbot.web.default

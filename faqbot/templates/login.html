@@ -1,0 +1,26 @@
+{% extends "wrapper.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="all-page">
+    <div class="center-page">
+        <form action="" method="POST">
+            <p class="hi">
+                hi! i'm faqbot.
+            </p>
+            <div class="ui input big">
+                <input name="faqbot_password"
+                       type="password"
+                       placeholder="Password..."
+                       class="pw-box">
+            </div>
+            {% if error %}
+                <br><br>
+                <p class="error">
+                    {{ error }}
+                </p>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}
