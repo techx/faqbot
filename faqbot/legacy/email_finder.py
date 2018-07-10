@@ -12,7 +12,7 @@ def get_emails(s):
     # return (email[0] for email in re.findall(regex, s) if not email[0].startswith('//'))
     ret = []
     for candidate in re.findall(r'\<(.*?)\>', s):
-    	if validate_email(candidate):
-    		ret.append(candidate)
+        if validate_email(candidate):
+            ret.append(candidate)
 
     return ret

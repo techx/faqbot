@@ -1,4 +1,6 @@
 config.py
+defaults.py
 *.pyc
 *.pkl
+store.p
 env/
