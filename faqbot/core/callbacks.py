@@ -8,6 +8,9 @@ to the thread using the `reply_email` function.
 
 from faqbot.core.utils import increment_mail_stat
 
+from faqbot.features.stats import Stats
+from faqbot.features.templates import Templates
+
 def triggered_email(body, argv, reply_object):
     """This routine gets triggered when an @faqbot
     body message is sent. It is more accurate that
@@ -21,9 +24,13 @@ def triggered_email(body, argv, reply_object):
 
     """
 
-    # Let's first update our statistic.
-    increment_mail_stat()
-    
+    # TODO Maybe implement some sort of auth
+    # only for triggered messages. We only 
+    # want people from our team doing this.
+
+    Stats.triggered_callback(body, argv, reply_object)
+    Templates.triggered_callback(body, argv, reply_object)
+
     print argv
 
 def raw_email(parsed, raw, reply_object):

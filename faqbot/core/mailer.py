@@ -28,7 +28,7 @@ def reply_email(reply_object, body):
 
     print recipients
 
-    msg = MIMEText(body, 'html')
+    msg = MIMEText(body + FOOTER, 'html')
     msg['Subject'] = reply_sujet
     msg["Message-ID"] = make_msgid()
     msg["In-Reply-To"] = reply_object['msg_id']
