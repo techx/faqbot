@@ -10,6 +10,8 @@ from faqbot.features import FEATURES
 from faqbot.features.stats import Stats
 from faqbot.features.templates import Templates
 
+import traceback
+
 def triggered_email(body, argv, reply_object):
     """This routine gets triggered when an @faqbot
     body message is sent. It is more accurate that
@@ -28,7 +30,10 @@ def triggered_email(body, argv, reply_object):
     # want people from our team doing this.
 
     for f in FEATURES:
-        f.triggered_callback(body, argv, reply_object)
+        try:
+            f.triggered_callback(body, argv, reply_object)
+        except Exception as e:
+            print traceback.format_exc()
 
 def raw_email(parsed, raw, reply_object):
     """If no trigger is found, this routine is fired.
@@ -37,4 +42,9 @@ def raw_email(parsed, raw, reply_object):
     The use of this method is to implement confident
     auto replies, without triggering faqbot.
     """
-    pass
+
+    for f in FEATURES:
+        try:
+            f.raw_callback(parsed, raw, reply_object)
+        except Exception as e:
+            print traceback.format_exc()

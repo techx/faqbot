@@ -23,11 +23,13 @@ routes to render templates that change the config.
 import faqbot.features.stats
 import faqbot.features.templates
 import faqbot.features.quill
+import faqbot.features.smartreply
 
 FEATURES = [
     stats.Stats,
     templates.Templates,
-    quill.Quill
+    quill.Quill,
+    smartreply.SmartReply
 ]
 
 def dump_menu():
