@@ -7,7 +7,7 @@ COMMANDS = {
 
     Hi! <br><br>
 
-    You need to be an enrolled undergraduate as of September 16th to participate in HackMIT. We can whitelist your email if you send us some proof of admission and enrollment. This is usually a picture of your student ID. <br><br>
+    You need to be an enrolled undergraduate as of September 15th to participate in HackMIT. We can whitelist your email if you send us some proof of admission and enrollment. This is usually a picture of your student ID. <br><br>
 
     If your college provides you with an educational email, we can whitelist the entire domain so that you and your classmates can register for HackMIT. <br><br>
 
@@ -54,7 +54,7 @@ COMMANDS = {
 
     If you are in the Boston area, you are welcome to show up early on the morning of the event to attempt walk-on admission. Walk on tends to be crowded and are not guaranteed, so make sure to arrive early with your government and student IDs! <br><br>
 
-    Otherwise, look out for applications to HackMIT 2018 next year!<br><br>
+    Otherwise, look out for applications to HackMIT 2019 next year!<br><br>
 
     Cheers,<br>
     Hackbot
@@ -66,7 +66,7 @@ COMMANDS = {
 
     If you are in the Boston area, you are welcome to show up early on the morning of the event to attempt walk-on admission. Walk on tends to be crowded and are not guaranteed, so make sure to arrive early with your government and student IDs! <br><br>
 
-    Otherwise, look out for applications to HackMIT 2018 next year!<br><br>
+    Otherwise, look out for applications to HackMIT 2019 next year!<br><br>
 
     Cheers,<br>
     Hackbot 

@@ -1,4 +1,5 @@
 config.py
+config_server.py
 defaults.py
 *.pyc
 *.pkl
