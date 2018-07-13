@@ -5,7 +5,7 @@
 
 <div class="ui checkbox">
     <input type="checkbox" class="enabled"
-        {% if config['enabled'] %}
+        {% if c['enabled'] %}
         checked
         {% endif %}
     >
@@ -37,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for key, value in config['templates'].items() %}
+        {% for key, value in c['templates'].items() %}
         <tr>
             <td>
                 <b>{{ key }}</b>

@@ -68,7 +68,7 @@ class Quill(Feature):
 def quill_panel():
     config = load_config(STORE)
     return render_template("quill.html", menu=get_menu(),
-                           config=config)
+                           c=config)
 
 @app.route(Quill.get_url() + '/api/enable')
 @requires_auth()

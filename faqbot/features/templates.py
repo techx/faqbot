@@ -63,7 +63,7 @@ class Templates(Feature):
 def templates_panel():
     config = load_config(STORE)
     return render_template("templates.html", menu=get_menu(),
-                           config=config)
+                           c=config)
 
 @app.route(Templates.get_url() + '/api/enable')
 @requires_auth()

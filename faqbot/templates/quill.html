@@ -5,7 +5,7 @@
 
 <div class="ui checkbox">
     <input type="checkbox" class="enabled"
-        {% if config['enabled'] %}
+        {% if c['enabled'] %}
         checked
         {% endif %}
     >
@@ -17,15 +17,15 @@
 <form class="ui form skinny" action="/quill/api/config" method="POST">
     <div class="field">
         <label>Quill URL</label>
-        <input type="text" name="quill_url" placeholder="Quill API Url" value="{{ config['quill_url'] }}">
+        <input type="text" name="quill_url" placeholder="Quill API Url" value="{{ c['quill_url'] }}">
     </div>
     <div class="field">
         <label>Quill Access Token</label>
-        <input type="text" name="quill_token" placeholder="Quill Token" value="{{ config['quill_token'] }}">
+        <input type="text" name="quill_token" placeholder="Quill Token" value="{{ c['quill_token'] }}">
     </div>
     <div class="field">
         <label>Reply</label>
-        <textarea name="reply">{{ config['reply'] }}</textarea>
+        <textarea name="reply">{{ c['reply'] }}</textarea>
     </div>
     <button class="ui button" type="submit">Save</button>
 </form>
