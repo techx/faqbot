@@ -3,7 +3,6 @@ templates and dynamic configuration details.
 """
 
 from faqbot.legacy.faq import COMMANDS
-from faqbot.core.defaults import DEFAULTS
 
 import pickle
 import copy
