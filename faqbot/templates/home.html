@@ -14,6 +14,8 @@
         {% for item in menu %}
         <li><a class="drawer-menu-item" href="{{ item['url'] }}">{{ item['name'] }}</a></li>
         {% endfor %}
+
+        <li><a class="drawer-menu-item" href="{{ url_for('logout') }}">Logout</a></li>
     </ul>
     </nav>
 </header>
