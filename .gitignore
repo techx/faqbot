@@ -1,4 +1,7 @@
 config.py
+config_server.py
+defaults.py
 *.pyc
-faq.pkl
+*.pkl
+*.p
 env/

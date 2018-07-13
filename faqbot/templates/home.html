@@ -1,0 +1,34 @@
+{% extends "wrapper.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<header role="banner">
+    <button type="button" class="drawer-toggle drawer-hamburger">
+    <span class="sr-only">toggle navigation</span>
+    <span class="drawer-hamburger-icon"></span>
+    </button>
+    <nav class="drawer-nav" role="navigation">
+    <ul class="drawer-menu">
+        <li><a class="drawer-brand" href="{{ menu[0]['url'] }}">faqbot</a></li>
+
+        {% for item in menu %}
+        <li><a class="drawer-menu-item" href="{{ item['url'] }}">{{ item['name'] }}</a></li>
+        {% endfor %}
+    </ul>
+    </nav>
+</header>
+<main role="main">
+   <div class="main-panel">
+        {% block panel %}
+        {% endblock %}
+   </div>
+</main>
+{% endblock %}
+
+{% block end %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+{% block js %}
+{% endblock %}
+
+{% endblock %}

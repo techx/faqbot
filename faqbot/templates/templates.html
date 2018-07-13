@@ -1,0 +1,79 @@
+{% extends "home.html" %}
+
+{% block panel %}
+<p class="hi">Templates</p>
+
+<div class="ui checkbox">
+    <input type="checkbox" class="enabled"
+        {% if config['enabled'] %}
+        checked
+        {% endif %}
+    >
+    <label>Enabled</label>
+</div>
+
+<br><br>
+
+<form class="ui form skinny" action="/templates/api/set" method="POST">
+    <div class="field">
+        <label>Key</label>
+        <input type="text" name="key" placeholder="Like 'edu' or 'travel'">
+    </div>
+    <div class="field">
+        <label>Value</label>
+        <textarea name="value"></textarea>
+    </div>
+    <button class="ui button" type="submit">Add / Set</button>
+</form>
+
+<br><br>
+
+<table class="ui celled padded table wd">
+    <thead>
+        <tr>
+            <th class="single line">Key</th>
+            <th>Value</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in config['templates'].items() %}
+        <tr>
+            <td>
+                <b>{{ key }}</b>
+            </td>
+            <td>
+                {{ value }}
+            </td>
+            <td>
+                <a href="/templates/delete/{{ key }}">
+                    <button class="ui compact icon button">
+                        <i class="trash icon"></i>
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(() => {
+
+$('.enabled').change(function() {
+    var url;
+    if ($(this).is(':checked')) {
+        url = '/templates/api/enable';
+    } else {
+        url = '/templates/api/disable';
+    }
+
+    $.get(url);
+});
+
+});
+</script>
+{% endblock %}

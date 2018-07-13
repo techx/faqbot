@@ -1,0 +1,51 @@
+{% extends "home.html" %}
+
+{% block panel %}
+<p class="hi">Quill</p>
+
+<div class="ui checkbox">
+    <input type="checkbox" class="enabled"
+        {% if config['enabled'] %}
+        checked
+        {% endif %}
+    >
+    <label>Enabled</label>
+</div>
+
+<br><br>
+
+<form class="ui form skinny" action="/quill/api/config" method="POST">
+    <div class="field">
+        <label>Quill URL</label>
+        <input type="text" name="quill_url" placeholder="Quill API Url" value="{{ config['quill_url'] }}">
+    </div>
+    <div class="field">
+        <label>Quill Access Token</label>
+        <input type="text" name="quill_token" placeholder="Quill Token" value="{{ config['quill_token'] }}">
+    </div>
+    <div class="field">
+        <label>Reply</label>
+        <textarea name="reply">{{ config['reply'] }}</textarea>
+    </div>
+    <button class="ui button" type="submit">Save</button>
+</form>
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(() => {
+
+$('.enabled').change(function() {
+    var url;
+    if ($(this).is(':checked')) {
+        url = '/quill/api/enable';
+    } else {
+        url = '/quill/api/disable';
+    }
+
+    $.get(url);
+});
+
+});
+</script>
+{% endblock %}
