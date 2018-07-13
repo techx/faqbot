@@ -45,7 +45,7 @@ class Quill(Feature):
                     at = s['quill_token']
                     quill.post_wl(quill.get_wl(at) + [email], at)
 
-                    reply = s['reply']
+                    reply = s['reply'].format(email=email)
                     reply_email(reply_object, reply)
 
                     return
