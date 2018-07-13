@@ -150,6 +150,7 @@ class Idler(object):
                 callbacks.raw_email(flanker_msg, raw_email, reply_object)
 
 def start_mail_thread():
+    print "Starting mail thread!"
     # Set the following two lines to your creds and server
     mail = imaplib2.IMAP4_SSL(IMAP_SERVER)
     mail.login(MAIL_USER, MAIL_PASSWORD)

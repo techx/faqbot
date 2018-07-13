@@ -43,7 +43,8 @@ class Quill(Feature):
             with Store(STORE) as s:
                 if command == "whitelist" and s['enabled']:
                     at = s['quill_token']
-                    quill.post_wl(quill.get_wl(at) + [email], at)
+                    ep = s['quill_url']
+                    post_wl(get_wl(at, ep) + [email], at, ep)
 
                     reply = s['reply'].format(email=email)
                     reply_email(reply_object, reply)
