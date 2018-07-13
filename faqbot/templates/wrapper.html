@@ -19,6 +19,11 @@
     <!-- Mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <!-- Drawer -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
+
     <title>{% block title %}{% endblock %} &middot; {{ config['APP_NAME'] }}</title>
     {% block head %}
     {% endblock %}
@@ -26,7 +31,7 @@
     {% block meta %}
     {% endblock %}
   </head>
-  <body>
+  <body class="drawer drawer--left">
     <div id="content">
       {% block content %}
       {% endblock %}

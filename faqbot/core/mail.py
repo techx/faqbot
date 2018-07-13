@@ -112,9 +112,6 @@ class Idler(object):
 
             body = "null"
 
-            store = load_config()
-            TRIGGERS = store['triggers']
-
             try:
                 for part in flanker_msg.parts:
                     pp = part.body.encode('ascii', 'ignore')

@@ -1,5 +1,6 @@
 from faqbot import app
 from faqbot.config import ADMIN_PASSWORD
+from faqbot.core.utils import get_menu
 
 import datetime
 import os
@@ -57,8 +58,8 @@ def logout():
     response.set_cookie('jwt', '')
     return response
 
-
 @app.route('/')
 @requires_auth()
 def index():
-    return render_template("home.html")
+    menu = get_menu()
+    return redirect(menu[0]['url'])

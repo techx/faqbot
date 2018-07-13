@@ -16,20 +16,20 @@ def store_path(name):
 
     return os.path.join(STORE_DIRECTORY, name + '.p')
 
-def save_config(store, name="features"):
+def save_config(store, name):
     """Give it a dictionary of your config,
     and a name of your config and it'll save it ;)
     """
     pickle.dump(store, open(store_path(name), 'w'))
 
-def load_config(name="features"):
+def load_config(name):
     """Load back the stored configs.
     Again, pass in the name of your config.
     """
 
     return pickle.load(open(store_path(name)))
 
-def gen_defaults(defaults, name="features"):
+def gen_defaults(defaults, name):
     """Pass it defaults, and it'll check if the
     config store already exists, if it doesn't
     it'll dump the defaults.
@@ -37,7 +37,7 @@ def gen_defaults(defaults, name="features"):
 
     if not os.path.exists(store_path(name)):
         store = copy.deepcopy(defaults)
-        save_config(store)
+        save_config(store, name)
 
 class Store(object):
     """Neat wrapper interface for accessing
@@ -53,6 +53,7 @@ class Store(object):
 
     def __enter__(self):
         self.store = load_config(self.name)
+        return self
 
     def __getitem__(self, key):
         return self.store[key]

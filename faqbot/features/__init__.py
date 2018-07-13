@@ -22,36 +22,25 @@ routes to render templates that change the config.
 
 import faqbot.features.stats
 import faqbot.features.templates
+import faqbot.features.quill
 
-ABSTRACT_ERROR = "Abstract method not implemented."
+FEATURES = [
+    stats.Stats,
+    templates.Templates,
+    quill.Quill
+]
 
-class Feature(object):
-    @staticmethod
-    def triggered_callback(body, argv, reply_object):
-        """ See callbacks.py
-        """
+def dump_menu():
+    from faqbot.core.store import save_config
 
-        raise NotImplementedError(ABSTRACT_ERROR)
-    
-    @staticmethod
-    def raw_callback(parsed, raw, reply_object):
-        """ See callbacks.py
-        """
+    menu = []
 
-        raise NotImplementedError(ABSTRACT_ERROR)
+    for feature in FEATURES:
+        menu.append({
+            'name': feature.get_name(),
+            'url': feature.get_url()
+        })
 
-    @staticmethod
-    def get_name():
-        """ Gets the name of this feature to be shown
-        in the the menu on the left.
-        """
+    save_config(menu, "menu")
 
-        raise NotImplementedError(ABSTRACT_ERROR)
-
-    @staticmethod
-    def get_url():
-        """ Gets the url of the feature's main page.
-        Example: /stats
-        """
-
-        raise NotImplementedError(ABSTRACT_ERROR)
+dump_menu()

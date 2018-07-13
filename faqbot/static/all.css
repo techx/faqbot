@@ -26,3 +26,23 @@ body head {
 .pw-box {
   width: 20rem;
 }
+
+.main-panel {
+  margin-left: 7rem;
+  margin-top: 5rem;
+}
+
+.stats {
+  font-family: 'Bitter';
+  font-size: 2.5em;
+  width: 40rem;
+  line-height: 1.7em;
+}
+
+.skinny {
+  width: 30rem;
+}
+
+.wd {
+  width: 40rem !important;
+}

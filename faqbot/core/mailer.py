@@ -21,6 +21,14 @@ def reply_email(reply_object, body):
     if len(re.split('From: ')) >= 2:
         re = re.split('From: ')[1]
 
+    lines = re.split('\n')
+    kk = []
+    for x in lines:
+        if (not 'Message-ID: ' in x):
+            kk.append(x)
+
+    re = "\n".join(kk)
+
     recipients += email_finder.get_emails(re)
 
     # Remove dupes

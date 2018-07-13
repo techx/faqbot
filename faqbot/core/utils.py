@@ -5,17 +5,13 @@ from faqbot.core.store import load_config, save_config
 def start_trigger(s, triggers):
     return any([s.startswith(t) for t in triggers])
 
-def increment_mail_stat():
-    store = load_config()
-    
-    if 'stats' in store:
-        if 'total_mails' in store:
-            store['stats']['total_mails'] += 1
-        else:
-            store['stats']['total_mails'] = 1
-    else:
-        store['stats'] = {
-            'total_mails': 1
-        }
+MENU = None
 
-    save_config(store)
+def get_menu():
+    global MENU
+    
+    if MENU:
+        return MENU
+
+    MENU = load_config("menu")
+    return MENU
