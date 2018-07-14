@@ -44,7 +44,10 @@ class Quill(Feature):
                 if command == "whitelist" and s['enabled']:
                     at = s['quill_token']
                     ep = s['quill_url']
-                    post_wl(get_wl(at, ep) + [email], at, ep)
+
+                    already_whitelisted = get_wl(at, ep)
+                    if email not in already_whitelisted:
+                        post_wl(already_whitelisted + [email], at, ep)
 
                     reply = s['reply'].format(email=email)
                     reply_email(reply_object, reply)
