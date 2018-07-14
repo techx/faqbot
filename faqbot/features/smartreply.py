@@ -149,6 +149,7 @@ class SmartReply(Feature):
 
     @staticmethod
     def raw_callback(parsed, raw, reply_object):
+        print "[SR] Smartreply Callback!"
         with Store(STORE) as s:
             if not s['enabled']:
                 return
@@ -158,6 +159,8 @@ class SmartReply(Feature):
                 if str(part) == "(text/plain)":
                     body = part.body.encode('ascii', 'ignore')
 
+            print "[SR] Parsed body to:", body
+
             if body == "null":
                 return
 
@@ -165,7 +168,7 @@ class SmartReply(Feature):
 
             email_message = email.message_from_string(raw)
 
-            print email_message['To']
+            print "[SR] To", email_message['To']
 
             sent_to = None
 
@@ -182,6 +185,8 @@ class SmartReply(Feature):
             class_ = model.classes_[np.argmax(p)]
 
             templates = load_config('templates')['templates']
+
+            print "[SR] Confidence %.2f, Class: %s" % (confidence, class_)
 
             if confidence > float(s['threshold']) and class_ in templates:
                 # XXX Remove Testing Header?
