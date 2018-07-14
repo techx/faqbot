@@ -35,7 +35,7 @@
 <form class="ui form skinny" action="/smartreply/settings" method="POST">
     <div class="field">
         <label>Email</label>
-        <input type="text" name="email" placeholder="Email" value="{{ c['email'] }}">
+        <input type="text" name="email" placeholder="Email" value="{{ c['email'] | join(',') }}">
     </div>
     <div class="field">
         <label>Confidence Threshold</label>

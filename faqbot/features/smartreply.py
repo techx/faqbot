@@ -44,7 +44,7 @@ from flask import (
 DEFAULTS = {
     'enabled': False,
     'threshold': 0.6,
-    'email': 'help@hackmit.org'
+    'email': ['help@hackmit.org', 'team@hackmit.org']
 }
 
 STORE = "smartreply_settings"
@@ -167,7 +167,13 @@ class SmartReply(Feature):
 
             print email_message['To']
 
-            if s['email'] not in email_message['To']:
+            sent_to = None
+
+            for e in s['email']:
+                if e in email_message['To']:
+                    sent_to = e
+
+            if sent_to is None:
                 return
 
             p = model.predict_proba([body])[0]
@@ -182,7 +188,7 @@ class SmartReply(Feature):
                 reply = "<b>(Team Only, Confidence: %.2f)</b><br><br>" % confidence
                 reply += templates[class_]
 
-                reply_email(reply_object, reply, reply_one=s['email'])
+                reply_email(reply_object, reply, reply_one=sent_to)
 
                 return
 
@@ -219,7 +225,7 @@ def smart_reply_panel():
 def config_sr():
     with Store(STORE) as s:
         s['threshold'] = request.form.get('threshold')
-        s['email'] = request.form.get('email')
+        s['email'] = request.form.get('email').split(',')
 
     return redirect(url_for('smart_reply_panel'))
 
