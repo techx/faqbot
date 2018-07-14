@@ -10,6 +10,13 @@ stop working.
 
 import subprocess
 import time
+import psutil
+
+def kill(proc_pid):
+    process = psutil.Process(proc_pid)
+    for proc in process.children(recursive=True):
+        proc.kill()
+    process.kill()
 
 VERBOSE = True
 DELAY = 1200 # seconds, or 20 minutes
@@ -23,4 +30,4 @@ while True:
 	if VERBOSE:
 		print "Killing {}".format(p.pid)
 
-	p.kill() # KILL.
+	kill(p.pid) # KILL.
