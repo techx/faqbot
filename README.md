@@ -1,4 +1,4 @@
-# FAQ Bot
+# faqbot
 
 A bot to manage emails that ask frequenty asked questions.
 
