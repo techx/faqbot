@@ -1,16 +1,16 @@
 import requests
 import json
 
-def get_wl(at):
+def get_wl(at, ep):
 	HEADERS = {'x-access-token': at}
-	r = requests.get(ENDPOINT, headers=HEADERS)
+	r = requests.get(ep, headers=HEADERS)
 	j = json.loads(r.text)
 	return j
 
-def post_wl(lst, at):
+def post_wl(lst, at, ep):
 	HEADERS = {'x-access-token': at}
 	j = {'emails': lst}
-	r = requests.put(ENDPOINT, headers=HEADERS, json=j)
+	r = requests.put(ep, headers=HEADERS, json=j)
 
 	print r.text
 

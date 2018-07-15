@@ -3,7 +3,7 @@ FAQ = """
 """
 
 COMMANDS = {
-    'edu': """
+    "edu": """
 
     Hi! <br><br>
 
@@ -17,7 +17,7 @@ COMMANDS = {
     Hackbot
 
     """,
-    'whitelist': """
+    "whitelist": """
 
     Hi! <br><br>
 
@@ -27,7 +27,7 @@ COMMANDS = {
     Hackbot
 
     """,
-    'mixed': """
+    "mixed": """
 
     Hi! <br><br>
 
@@ -39,7 +39,7 @@ COMMANDS = {
     Hackbot
 
     """,
-    'lateteam': """
+    "lateteam": """
     Hi, <br><br>
 
     Thanks for reaching out! Unfortunately registration is now closed and we cannot make changes to teams. The good news is this only affects admissions. So, if everyone gets admitted, you are welcome to hack together at the event! <br><br>
@@ -47,7 +47,7 @@ COMMANDS = {
     Cheers,<br>
     Hackbot
     """,
-    'latereg': """
+    "latereg": """
     Hi, <br><br>
 
     Thanks for reaching out! Unfortunately registration is now closed. We had 24-hour grace period for stragglers, but now that that period is over, we have begun the admissions process and cannot accept any more applications. <br><br>
@@ -59,7 +59,7 @@ COMMANDS = {
     Cheers,<br>
     Hackbot
     """,
-    'lateconfirm': """
+    "lateconfirm": """
     Hi, <br><br>
 
     Thanks for reaching out! Unfortunately the deadline for confirming your acceptance to HackMIT has passed. We had much more interest in HackMIT than we have space, so unfortunately cannot allow you to confirm your acceptance late. Sorry about that!<br><br>
@@ -71,7 +71,7 @@ COMMANDS = {
     Cheers,<br>
     Hackbot 
     """,
-    'travel': """
+    "travel": """
     Hi there,<br><br>
     
     We're processing travel reimbursements right now!<br>
@@ -80,7 +80,5 @@ COMMANDS = {
     
     Best,<br>
     Hackbot
-    """
+    """,
 }
-
-

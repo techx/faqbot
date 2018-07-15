@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 
 import smtplib
 
-def reply_email(reply_object, body):
+def reply_email(reply_object, body, reply_one=None):
     sujet = reply_object['subject']
     reply_sujet = "Re: " + sujet if not sujet.startswith('Re:') else sujet
     recipients = []
@@ -41,7 +41,13 @@ def reply_email(reply_object, body):
     msg["Message-ID"] = make_msgid()
     msg["In-Reply-To"] = reply_object['msg_id']
     msg["References"] = reply_object['msg_id']
-    msg["To"] = ", ".join(recipients)
+
+    if reply_one:
+        msg["To"] = reply_one
+        recipients = [reply_one]
+    else:
+        msg["To"] = ", ".join(recipients)
+
     msg["From"] = MAIL_FROM
 
     s = smtplib.SMTP_SSL(SMTP_SERVER)

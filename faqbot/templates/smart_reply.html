@@ -1,0 +1,67 @@
+{% extends "home.html" %}
+
+{% block panel %}
+<p class="hi">Smart Reply</p>
+
+<div class="ui checkbox">
+    <input type="checkbox" class="enabled"
+        {% if c['enabled'] %}
+        checked
+        {% endif %}
+    >
+    <label>Enabled</label>
+</div>
+
+<br><br>
+
+<form class="ui form skinny" action="/smartreply" method="POST">
+    <div class="field">
+        <label>Try it out!</label>
+        <textarea name="text"></textarea>
+    </div>
+    <button class="ui button" type="submit">Predict</button>
+</form>
+
+{% if prediction %}
+    <br><br>
+    <div class="prediction">
+        <b>Prediction:</b> {{ prediction[1] }} <br>
+        <b>Confidence:</b> {{ prediction[0] }}
+    </div>
+{% endif %}
+
+<br><br>
+
+<form class="ui form skinny" action="/smartreply/settings" method="POST">
+    <div class="field">
+        <label>Email</label>
+        <input type="text" name="email" placeholder="Email" value="{{ c['email'] | join(',') }}">
+    </div>
+    <div class="field">
+        <label>Confidence Threshold</label>
+        <input type="text" name="threshold" placeholder="Threshold" value="{{ c['threshold'] }}">
+    </div>
+    <button class="ui button" type="submit">Save</button>
+</form>
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(() => {
+
+$('.enabled').change(function() {
+    var url;
+    if ($(this).is(':checked')) {
+        url = '/smartreply/api/enable';
+    } else {
+        url = '/smartreply/api/disable';
+    }
+
+    $.get(url);
+});
+
+});
+</script>
+{% endblock %}

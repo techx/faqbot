@@ -4,6 +4,7 @@ interface.
 
 ABSTRACT_ERROR = "Abstract method not implemented."
 
+
 class Feature(object):
     @staticmethod
     def triggered_callback(body, argv, reply_object):
@@ -11,7 +12,7 @@ class Feature(object):
         """
 
         raise NotImplementedError(ABSTRACT_ERROR)
-    
+
     @staticmethod
     def raw_callback(parsed, raw, reply_object):
         """ See callbacks.py

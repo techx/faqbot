@@ -9,29 +9,21 @@ from faqbot.features.feature import Feature
 from faqbot.legacy.quill_api import post_wl, get_wl
 from faqbot.core.mailer import reply_email
 
-from faqbot.core.store import (
-    gen_defaults,
-    load_config,
-    Store
-)
+from faqbot.core.store import gen_defaults, load_config, Store
 
-from flask import (
-    request,
-    render_template,
-    redirect,
-    url_for
-)
+from flask import request, render_template, redirect, url_for
 
 DEFAULTS = {
-    'enabled': True,
-    'quill_url': "https://my.hackmit.org/api/settings/whitelist",
-    'quill_token': "",
-    'reply': "Hi! <br><br> We've whitelisted the email address {email}. You can now use this for registration! <br><br> Best,<br> Hackbot"
+    "enabled": True,
+    "quill_url": "https://my.hackmit.org/api/settings/whitelist",
+    "quill_token": "",
+    "reply": "Hi! <br><br> We've whitelisted the email address {email}. You can now use this for registration! <br><br> Best,<br> Hackbot",
 }
 
 STORE = "quill"
 
 gen_defaults(DEFAULTS, STORE)
+
 
 class Quill(Feature):
     @staticmethod
@@ -41,11 +33,15 @@ class Quill(Feature):
             email = argv[2]
 
             with Store(STORE) as s:
-                if command == "whitelist" and s['enabled']:
-                    at = s['quill_token']
-                    quill.post_wl(quill.get_wl(at) + [email], at)
+                if command == "whitelist" and s["enabled"]:
+                    at = s["quill_token"]
+                    ep = s["quill_url"]
 
-                    reply = s['reply'].format(email=email)
+                    already_whitelisted = get_wl(at, ep)
+                    if email not in already_whitelisted:
+                        post_wl(already_whitelisted + [email], at, ep)
+
+                    reply = s["reply"].format(email=email)
                     reply_email(reply_object, reply)
 
                     return
@@ -62,34 +58,37 @@ class Quill(Feature):
     def get_url():
         return "/quill"
 
+
 # Web control panel render.
 @app.route(Quill.get_url())
 @requires_auth()
 def quill_panel():
     config = load_config(STORE)
-    return render_template("quill.html", menu=get_menu(),
-                           c=config)
+    return render_template("quill.html", menu=get_menu(), c=config)
 
-@app.route(Quill.get_url() + '/api/enable')
+
+@app.route(Quill.get_url() + "/api/enable")
 @requires_auth()
 def enable_quill():
     with Store(STORE) as s:
-        s['enabled'] = True
+        s["enabled"] = True
     return "OK"
 
-@app.route(Quill.get_url() + '/api/disable')
+
+@app.route(Quill.get_url() + "/api/disable")
 @requires_auth()
 def disable_quill():
     with Store(STORE) as s:
-        s['enabled'] = False
+        s["enabled"] = False
     return "OK"
 
-@app.route(Quill.get_url() + '/api/config', methods=['POST'])
+
+@app.route(Quill.get_url() + "/api/config", methods=["POST"])
 @requires_auth()
 def config_quill():
     with Store(STORE) as s:
-        s['quill_url'] = request.form.get('quill_url')
-        s['quill_token'] = request.form.get('quill_token')
-        s['reply'] = request.form.get('reply')
+        s["quill_url"] = request.form.get("quill_url")
+        s["quill_token"] = request.form.get("quill_token")
+        s["reply"] = request.form.get("reply")
 
-    return redirect(url_for('quill_panel'))
+    return redirect(url_for("quill_panel"))
