@@ -118,7 +118,7 @@ Adding new features is extensively documented in the [`features` module](faqbot/
 
 ### Contributing
 
-Try to follow PEP8 for everything oustide of `legacy/`. Contribute by opening pull requests and report bugs by creating issues. Email parsing in general is nasty so opening bugs for parsing errors will be really helpful.
+Try to use [black](https://github.com/ambv/black) and follow that style for everything oustide of `legacy/`. Contribute by opening pull requests and report bugs by creating issues. Email parsing in general is nasty so opening bugs for parsing errors will be really helpful.
 
 ## Security
 

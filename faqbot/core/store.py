@@ -8,18 +8,21 @@ import pickle
 import copy
 import os
 
-STORE_DIRECTORY = 'store'
+STORE_DIRECTORY = "store"
+
 
 def store_path(name):
     """Internal function."""
 
-    return os.path.join(STORE_DIRECTORY, name + '.p')
+    return os.path.join(STORE_DIRECTORY, name + ".p")
+
 
 def save_config(store, name):
     """Give it a dictionary of your config,
     and a name of your config and it'll save it ;)
     """
-    pickle.dump(store, open(store_path(name), 'w'))
+    pickle.dump(store, open(store_path(name), "w"))
+
 
 def load_config(name):
     """Load back the stored configs.
@@ -27,6 +30,7 @@ def load_config(name):
     """
 
     return pickle.load(open(store_path(name)))
+
 
 def gen_defaults(defaults, name):
     """Pass it defaults, and it'll check if the
@@ -37,6 +41,7 @@ def gen_defaults(defaults, name):
     if not os.path.exists(store_path(name)):
         store = copy.deepcopy(defaults)
         save_config(store, name)
+
 
 class Store(object):
     """Neat wrapper interface for accessing

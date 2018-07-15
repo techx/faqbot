@@ -21,12 +21,8 @@ import faqbot.features.templates
 import faqbot.features.quill
 import faqbot.features.smartreply
 
-FEATURES = [
-    stats.Stats,
-    templates.Templates,
-    quill.Quill,
-    smartreply.SmartReply
-]
+FEATURES = [stats.Stats, templates.Templates, quill.Quill, smartreply.SmartReply]
+
 
 def dump_menu():
     from faqbot.core.store import save_config
@@ -34,11 +30,9 @@ def dump_menu():
     menu = []
 
     for feature in FEATURES:
-        menu.append({
-            'name': feature.get_name(),
-            'url': feature.get_url()
-        })
+        menu.append({"name": feature.get_name(), "url": feature.get_url()})
 
     save_config(menu, "menu")
+
 
 dump_menu()
