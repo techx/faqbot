@@ -110,6 +110,14 @@ To run on production,
 python run.py
 ```
 
+### Testing
+
+The tests right now are hidden, because they are based on emails we've received in the past and hence reveal private information. However, I do plan on anonmyzing them and checking them in here. In any case, the tests are run as follows:
+
+```
+python -m unittest tests.test_parsing
+```
+
 ### Writing Code
 
 faqbot's codebase is designed to be hackable. The main directory to add a new feature is the `faqbot/features/` directory. Here you can register for email callbacks and use the faqbot API to send reply-all or reply-one messages based on the email you just received.
