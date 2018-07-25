@@ -5,3 +5,4 @@ defaults.py
 *.pkl
 *.p
 env/
+tests/

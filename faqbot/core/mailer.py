@@ -8,16 +8,8 @@ from email.mime.text import MIMEText
 
 import smtplib
 
-def reply_email(reply_object, body, reply_one=None):
-    sujet = reply_object['subject']
-    reply_sujet = "Re: " + sujet if not sujet.startswith('Re:') else sujet
-    recipients = []
-    for r in reply_object['all_recipients']:
-        recipients.append(r[1])
-
+def init_finder(re):
     # Try to find the initial sender
-    re = reply_object['raw_email']
-
     if len(re.split('From: ')) >= 2:
         re = re.split('From: ')[1]
 
@@ -27,12 +19,24 @@ def reply_email(reply_object, body, reply_one=None):
         if (not 'Message-ID: ' in x):
             kk.append(x)
 
-    re = "\n".join(kk)
+    re = "".join(kk)
 
-    recipients += email_finder.get_emails(re)
+    recipients = email_finder.get_emails(re)
 
     # Remove dupes
     recipients = list(set(recipients))
+
+    return recipients
+
+def reply_email(reply_object, body, reply_one=None):
+    sujet = reply_object['subject']
+    reply_sujet = "Re: " + sujet if not sujet.startswith('Re:') else sujet
+    recipients = []
+    for r in reply_object['all_recipients']:
+        recipients.append(r[1])
+
+    re = reply_object['raw_email']
+    recipients += init_finder(re)
 
     print recipients
 
