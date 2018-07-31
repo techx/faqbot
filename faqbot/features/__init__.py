@@ -22,7 +22,13 @@ import faqbot.features.quill
 import faqbot.features.smartreply
 import faqbot.features.visa
 
-FEATURES = [stats.Stats, templates.Templates, quill.Quill, smartreply.SmartReply, visa.Visa]
+FEATURES = [stats.Stats, templates.Templates, quill.Quill, smartreply.SmartReply]
+
+# Only enable Visa if we have the file.
+import os
+
+if os.path.exists("faqbot/static/visa"):
+    FEATURES.append(visa.Visa)
 
 
 def dump_menu():
