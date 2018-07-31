@@ -43,6 +43,7 @@ from flask import (
 
 DEFAULTS = {
     'enabled': False,
+    'mock': True,
     'threshold': 0.6,
     'email': ['help@hackmit.org', 'team@hackmit.org']
 }
@@ -189,11 +190,13 @@ class SmartReply(Feature):
             print "[SR] Confidence %.2f, Class: %s" % (confidence, class_)
 
             if confidence > float(s['threshold']) and class_ in templates:
-                # XXX Remove Testing Header?
-                reply = "<b>(Team Only, Confidence: %.2f)</b><br><br>" % confidence
-                reply += templates[class_]
-
-                reply_email(reply_object, reply, reply_one=sent_to)
+                if s['mock']:
+                    reply = "<b>(Team Only, Confidence: %.2f)</b><br><br>" % confidence
+                    reply += templates[class_]
+                    reply_email(reply_object, reply, reply_one=sent_to)
+                else:
+                    reply = templates[class_]
+                    reply_email(reply_object, reply)
 
                 return
 
@@ -246,4 +249,18 @@ def enable_sr():
 def disable_sr():
     with Store(STORE) as s:
         s['enabled'] = False
+    return "OK"
+
+@app.route(SmartReply.get_url() + '/api/mock/enable')
+@requires_auth()
+def enable_sr_mock():
+    with Store(STORE) as s:
+        s['mock'] = True
+    return "OK"
+
+@app.route(SmartReply.get_url() + '/api/mock/disable')
+@requires_auth()
+def disable_sr_mock():
+    with Store(STORE) as s:
+        s['mock'] = False
     return "OK"

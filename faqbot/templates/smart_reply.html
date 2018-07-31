@@ -12,6 +12,17 @@
     <label>Enabled</label>
 </div>
 
+<br>
+
+<div class="ui checkbox">
+    <input type="checkbox" class="mock"
+        {% if c['mock'] %}
+        checked
+        {% endif %}
+    >
+    <label>Mock</label>
+</div>
+
 <br><br>
 
 <form class="ui form skinny" action="/smartreply" method="POST">
@@ -57,6 +68,17 @@ $('.enabled').change(function() {
         url = '/smartreply/api/enable';
     } else {
         url = '/smartreply/api/disable';
+    }
+
+    $.get(url);
+});
+
+$('.mock').change(function() {
+    var url;
+    if ($(this).is(':checked')) {
+        url = '/smartreply/api/mock/enable';
+    } else {
+        url = '/smartreply/api/mock/disable';
     }
 
     $.get(url);
