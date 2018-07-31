@@ -5,6 +5,8 @@ import faqbot.legacy.email_finder as email_finder
 from faqbot.config import *
 from email.utils import getaddresses, parseaddr, make_msgid
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
 
 import smtplib
 
@@ -28,7 +30,7 @@ def init_finder(re):
 
     return recipients
 
-def reply_email(reply_object, body, reply_one=None):
+def reply_email(reply_object, body, attach=None, attach_fn="file.pdf", reply_one=None):
     sujet = reply_object['subject']
     reply_sujet = "Re: " + sujet if not sujet.startswith('Re:') else sujet
     recipients = []
@@ -40,7 +42,15 @@ def reply_email(reply_object, body, reply_one=None):
 
     print recipients
 
-    msg = MIMEText(body + FOOTER, 'html')
+    if attach is None:
+        msg = MIMEText(body + FOOTER, 'html')
+    else:
+        msg = MIMEMultipart()
+        msg.attach(MIMEText(body + FOOTER, 'html'))
+        achh = MIMEApplication(attach)
+        achh.add_header('Content-Disposition', 'attachment', filename=attach_fn)
+        msg.attach(achh)
+
     msg['Subject'] = reply_sujet
     msg["Message-ID"] = make_msgid()
     msg["In-Reply-To"] = reply_object['msg_id']

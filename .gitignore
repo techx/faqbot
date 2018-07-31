@@ -6,3 +6,4 @@ defaults.py
 *.p
 env/
 tests/
+visa/

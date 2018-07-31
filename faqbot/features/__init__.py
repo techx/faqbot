@@ -20,8 +20,9 @@ import faqbot.features.stats
 import faqbot.features.templates
 import faqbot.features.quill
 import faqbot.features.smartreply
+import faqbot.features.visa
 
-FEATURES = [stats.Stats, templates.Templates, quill.Quill, smartreply.SmartReply]
+FEATURES = [stats.Stats, templates.Templates, quill.Quill, smartreply.SmartReply, visa.Visa]
 
 
 def dump_menu():
