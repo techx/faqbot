@@ -42,6 +42,9 @@ class Quill(Feature):
                         post_wl(already_whitelisted + [email], at, ep)
 
                     reply = s["reply"].format(email=email)
+
+                    # Modify reply object to include whitelisted email.
+                    reply_object['all_recipients'].append(('', email))
                     reply_email(reply_object, reply)
 
                     return

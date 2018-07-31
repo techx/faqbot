@@ -23,7 +23,7 @@ def init_finder(re):
 
     re = "".join(kk)
 
-    recipients = email_finder.get_emails(re)
+    recipients = [x.replace('=', '') for x in email_finder.get_emails(re)]
 
     # Remove dupes
     recipients = list(set(recipients))
