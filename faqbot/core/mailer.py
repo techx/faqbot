@@ -9,8 +9,29 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
 import smtplib
+import base64
+
+def undo_base64(re):
+    marker = 'Content-Type: text/plain; charset="utf-8"\n' + 'Content-Transfer-Encoding: base64\n'
+    if marker not in re:
+        return re
+
+    re = ''.join(re.split(marker)[1:])
+    valid_lines = []
+
+    for line in re.split('\n'):
+        if '-' in line:
+            break
+        valid_lines.append(line)
+
+    base64_contents = ''.join(valid_lines)
+    
+    return str(base64.b64decode(base64_contents).decode('ascii', 'ignore').encode('ascii', 'ignore'))
 
 def init_finder(re):
+    if 'Content-Transfer-Encoding: base64' in re:
+        re = undo_base64(re)
+
     # Try to find the initial sender
     if len(re.split('From: ')) >= 2:
         re = ''.join(re.split('From: ')[1:])
