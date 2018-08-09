@@ -22,6 +22,7 @@ def init_finder(re):
             kk.append(x)
 
     re = "".join(kk)
+    re = re.replace('[', '<').replace(']', '>')
 
     recipients = [x.replace('=', '') for x in email_finder.get_emails(re)]
 
