@@ -13,7 +13,7 @@ import smtplib
 def init_finder(re):
     # Try to find the initial sender
     if len(re.split('From: ')) >= 2:
-        re = re.split('From: ')[1]
+        re = ''.join(re.split('From: ')[1:])
 
     lines = re.split('\n')
     kk = []

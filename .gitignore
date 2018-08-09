@@ -7,3 +7,4 @@ defaults.py
 env/
 tests/
 visa/
+.vscode/
