@@ -8,3 +8,4 @@ env/
 tests/
 visa/
 .vscode/
+__pycache__/

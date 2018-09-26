@@ -1,5 +1,7 @@
-"""This module handles the whitelist commands
-and interfaces with quill.
+"""This feature can definitely use some cleanup.
+
+This is the smart reply module, which learns from all faqbot usages
+in the past and learns to auto-reply.
 """
 
 from faqbot import app
