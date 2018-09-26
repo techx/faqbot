@@ -2,7 +2,7 @@
 
 A bot to manage emails that ask frequenty asked questions.
 
-
+![Control Panel](./screenshot.png)
 
 ## Features
 
