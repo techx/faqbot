@@ -4,27 +4,27 @@ A bot to manage emails that ask frequenty asked questions.
 
 
 
-# Features
+## Features
 
-## Canned Replies
+### Canned Replies
 
 Super simple interface to reply to an email with a canned response. Simply reply to faqbot with `@faqbot <template_name>` and faqbot will respond to the original email with the response.
 
-## Hackable Email Modules
+### Hackable Email Modules
 
 Easy API to add new email bot features. Simply hook into a `email_callback` and use the API to do tasks and reply to emails that suit your needs.
 
-## Smart Reply
+### Smart Reply
 
 With a lot of faqbot usage from your organization, you can train a model such that faqbot can figure out how to reply on its own.
 
-## Quill Integration
+### Quill Integration
 
 If you run a hackathon and use HackMIT's quill registration system, faqbot comes pre-baked with quill integration. Whitelist email addresses right from your inbox.
 
-### And many more!
+#### And many more!
 
-# Setup
+## Setup
 
 Resolve dependencies,
 
@@ -48,13 +48,13 @@ To run on production,
 python run.py
 ```
 
-# Usage
+## Usage
 
-## Control Panel
+### Control Panel
 
 Head over to the url where you've deployed faqbot to view the control panel. There you can enable / disable features, tweak settings and add new templates.
 
-## Basic Usage
+### Basic Usage
 
 Reply all to the email thread without the person who sent the email. Or reply-one to `admin@hackmit.org` (or your configured mail-box) with the body text:
 
@@ -66,7 +66,7 @@ This will reply to the person a generic response to "I didn't register for you h
 
 You can also use the `@fb` trigger for shorthand.
 
-## Quill
+### Quill
 
 faqbot has a quill integration module (HackMIT's registration system). This is used to whitelist emails in our system.
 
@@ -76,7 +76,7 @@ faqbot has a quill integration module (HackMIT's registration system). This is u
 
 This will whitelist the given email in quill and reply to the person.
 
-## Smart Reply
+### Smart Reply
 
 faqbot can learn emails > template mapping and will attempt to automatically reply to an email if it's confident enough.
 
@@ -93,15 +93,15 @@ python tasks.py --train
 ```
 
 
-# Development
+## Development
 
-## Writing Code
+### Writing Code
 
 faqbot's codebase is designed to be hackable. The main directory to add a new feature is the `faqbot/features/` directory. Here you can register for email callbacks and use the faqbot API to send reply-all or reply-one messages based on the email you just received.
 
 Adding new features is extensively documented in the [`features` module](faqbot/features/__init__.py). You can also take a look at the [quill feature](faqbot/features/quill.py) as an example feature to off of.
 
-## Testing
+### Testing
 
 The tests right now are hidden, because they are based on emails we've received in the past and hence reveal private information. However, I do plan on anonmyzing them and checking them in here. In any case, the tests are run as follows:
 
@@ -109,6 +109,6 @@ The tests right now are hidden, because they are based on emails we've received 
 python -m unittest tests.test_parsing
 ```
 
-## Contributing
+### Contributing
 
 Try to use [black](https://github.com/ambv/black) and follow that style for everything oustide of `legacy/`. Contribute by opening pull requests and report bugs by creating issues. Email parsing in general is nasty so opening bugs for parsing errors will be really helpful.
