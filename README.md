@@ -112,3 +112,6 @@ python -m unittest tests.test_parsing
 ### Contributing
 
 Try to use [black](https://github.com/ambv/black) and follow that style for everything oustide of `legacy/`. Contribute by opening pull requests and report bugs by creating issues. Email parsing in general is nasty so opening bugs for parsing errors will be really helpful.
+
+## License
+Copyright (c) 2018-2019 Shreyas Kapur. Released under AGPLv3. See [LICENSE.md](LICENSE.md) for details.
