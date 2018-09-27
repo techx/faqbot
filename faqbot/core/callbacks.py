@@ -25,10 +25,6 @@ def triggered_email(body, argv, reply_object):
 
     """
 
-    # TODO Maybe implement some sort of auth
-    # only for triggered messages. We only 
-    # want people from our team doing this.
-
     for f in FEATURES:
         try:
             f.triggered_callback(body, argv, reply_object)
