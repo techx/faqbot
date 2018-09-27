@@ -74,8 +74,12 @@ def disable_templates():
 @app.route(Templates.get_url() + "/api/set", methods=["POST"])
 @requires_auth()
 def set_template():
+    key = request.form.get("key", None)
+    if key is None or key.strip() == '':
+        return redirect(url_for("templates_panel"))
+
     with Store(STORE) as s:
-        s["templates"][request.form.get("key")] = request.form.get("value")
+        s["templates"][key] = request.form.get("value")
 
     return redirect(url_for("templates_panel"))
 
