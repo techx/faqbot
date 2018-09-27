@@ -14,6 +14,7 @@ the callbacks.
 from faqbot.config import *
 from faqbot.core.store import load_config
 from faqbot.core.utils import start_trigger
+from faqbot.features.whitelist import is_whitelisted
 import email
 from email.utils import getaddresses, parseaddr
 from email.mime.text import MIMEText
@@ -141,7 +142,7 @@ class Idler(object):
                 'msg_id': email_message["Message-ID"]
             }
 
-            if start_trigger(body, TRIGGERS) and "From" in email_message:
+            if start_trigger(body, TRIGGERS) and "From" in email_message and is_whitelisted(raw_email):
                 print "Request from {} for subject {}.".format(email_message["From"], email_message["Subject"])
                 
                 argv = [x.strip() for x in body.split()]

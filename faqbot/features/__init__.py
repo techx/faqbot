@@ -17,12 +17,19 @@ work.
 """
 
 import faqbot.features.stats
+import faqbot.features.whitelist
 import faqbot.features.templates
 import faqbot.features.quill
 import faqbot.features.smartreply
 import faqbot.features.visa
 
-FEATURES = [stats.Stats, templates.Templates, quill.Quill, smartreply.SmartReply]
+FEATURES = [
+    stats.Stats,
+    whitelist.Whitelist,
+    templates.Templates,
+    quill.Quill,
+    smartreply.SmartReply,
+]
 
 # Only enable Visa if we have the file.
 import os
