@@ -4,28 +4,28 @@ environment or from this file.
 
 import os
 
-'''
+"""
 ===== WEB SPECIFIC =====
-'''
+"""
 
 # What's this app called?
-APP_NAME = os.environ.get('APP_NAME', "faqbot")
+APP_NAME = os.environ.get("APP_NAME", "faqbot")
 
 # App network port.
-PORT = os.environ.get('PORT', 8114)
+PORT = os.environ.get("PORT", 8114)
 
 # Is the app running in debug mode?
-DEBUG = bool(os.environ.get('DEBUG', False))
+DEBUG = bool(os.environ.get("DEBUG", False))
 
 # Secret for JWTs.
-SECRET = os.environ.get('SECRET', "CHANGE THIS")
+SECRET = os.environ.get("SECRET", "CHANGE THIS")
 
 # Admin password.
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', "P9Jt_B=uMvgu6#EG")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "P9Jt_B=uMvgu6#EG")
 
-'''
+"""
 ===== MAIL SPECIFIC =====
-'''
+"""
 
 # IMAP server details.
 IMAP_SERVER = "imap.gmail.com"

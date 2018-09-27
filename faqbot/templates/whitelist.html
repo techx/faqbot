@@ -1,0 +1,43 @@
+{% extends "home.html" %}
+
+{% block panel %}
+<p class="hi">Whitelist</p>
+
+<div class="ui checkbox">
+    <input type="checkbox" class="enabled"
+        {% if c['enabled'] %}
+        checked
+        {% endif %}
+    >
+    <label>Enabled</label>
+</div>
+
+<br><br>
+
+<form class="ui form skinny" action="/whitelist/api/config" method="POST">
+    <div class="field">
+        <label>Whitelisted Emails (one per line)</label>
+        <textarea name="whitelist">{{'\n'.join(c['whitelist'])}}</textarea>
+    </div>
+    <button class="ui button" type="submit">Save</button>
+</form>
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(() => {
+
+$('.enabled').change(function() {
+    var url;
+    if ($(this).is(':checked')) {
+        url = '/whitelist/api/enable';
+    } else {
+        url = '/whitelist/api/disable';
+    }
+
+    $.get(url);
+});
+
+});
+</script>
+{% endblock %}
