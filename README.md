@@ -80,7 +80,7 @@ This will whitelist the given email in quill and reply to the person.
 
 ### Smart Reply
 
-faqbot can learn emails > template mapping and will attempt to automatically reply to an email if it's confident enough.
+faqbot can learn emails to template mapping and will attempt to automatically reply to an email if it's confident enough.
 
 To use Smart Reply on your own emails, collect training data,
 
@@ -101,11 +101,11 @@ python tasks.py --train
 
 faqbot's codebase is designed to be hackable. The main directory to add a new feature is the `faqbot/features/` directory. Here you can register for email callbacks and use the faqbot API to send reply-all or reply-one messages based on the email you just received.
 
-Adding new features is extensively documented in the [`features` module](faqbot/features/__init__.py). You can also take a look at the [quill feature](faqbot/features/quill.py) as an example feature to off of.
+Adding new features is extensively documented in the [`features` module](faqbot/features/__init__.py). You can also take a look at the [quill feature](faqbot/features/quill.py) as an example feature to go off of.
 
 ### Testing
 
-The tests right now are hidden, because they are based on emails we've received in the past and hence reveal private information. However, I do plan on anonmyzing them and checking them in here. In any case, the tests are run as follows:
+The tests right now are hidden, because they are based on emails we've received in the past and hence reveal private information. However, we do plan on anonymize them and checking them in. The tests are run as follows:
 
 ```
 python -m unittest tests.test_parsing
@@ -113,7 +113,7 @@ python -m unittest tests.test_parsing
 
 ### Contributing
 
-Try to use [black](https://github.com/ambv/black) and follow that style for everything oustide of `legacy/`. Contribute by opening pull requests and report bugs by creating issues. Email parsing in general is nasty so opening bugs for parsing errors will be really helpful.
+Try to use [black](https://github.com/ambv/black) and follow that style for everything outside of `legacy/`. Contribute by opening pull requests and report bugs by creating issues. Email parsing in general is nasty, so opening bugs for parsing errors will be really helpful.
 
 ## License
 Copyright (c) 2018-2019 Shreyas Kapur. Released under AGPLv3. See [LICENSE.md](LICENSE.md) for details.

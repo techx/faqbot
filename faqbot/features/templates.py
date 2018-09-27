@@ -75,7 +75,7 @@ def disable_templates():
 @requires_auth()
 def set_template():
     key = request.form.get("key", None)
-    if key is None or key.strip() == '':
+    if key is None or key.strip() == "":
         return redirect(url_for("templates_panel"))
 
     with Store(STORE) as s:
