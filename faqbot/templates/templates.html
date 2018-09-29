@@ -14,6 +14,27 @@
 
 <br><br>
 
+<div class="ui checkbox">
+    <input type="checkbox" class="autosign"
+        {% if c['autosign'] %}
+        checked
+        {% endif %}
+    >
+    <label>Auto Signature</label>
+</div>
+
+<br><br>
+
+<form class="ui form skinny" action="/templates/api/signature" method="POST">
+    <div class="field">
+        <label>Auto Signature Name</label>
+        <input type="text" name="signature" placeholder="Like 'Hackbot'" value="{{ c['signature'] }}">
+    </div>
+    <button class="ui button" type="submit">Change Name</button>
+</form>
+
+<br><br>
+
 <form class="ui form skinny" action="/templates/api/set" method="POST">
     <div class="field">
         <label>Key</label>
@@ -69,6 +90,17 @@ $('.enabled').change(function() {
         url = '/templates/api/enable';
     } else {
         url = '/templates/api/disable';
+    }
+
+    $.get(url);
+});
+
+$('.autosign').change(function() {
+    var url;
+    if ($(this).is(':checked')) {
+        url = '/templates/api/autosign/on';
+    } else {
+        url = '/templates/api/autosign/off';
     }
 
     $.get(url);

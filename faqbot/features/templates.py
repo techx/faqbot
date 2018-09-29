@@ -111,6 +111,20 @@ def disable_templates():
         s["enabled"] = False
     return "OK"
 
+@app.route(Templates.get_url() + "/api/autosign/on")
+@requires_auth()
+def enable_autosign():
+    with Store(STORE) as s:
+        s["autosign"] = True
+    return "OK"
+
+
+@app.route(Templates.get_url() + "/api/autosign/off")
+@requires_auth()
+def disable_autosign():
+    with Store(STORE) as s:
+        s["autosign"] = False
+    return "OK"
 
 @app.route(Templates.get_url() + "/api/set", methods=["POST"])
 @requires_auth()
@@ -130,5 +144,15 @@ def set_template():
 def delete_template(key):
     with Store(STORE) as s:
         del s.store["templates"][key]
+
+    return redirect(url_for("templates_panel"))
+
+@app.route(Templates.get_url() + "/api/signature", methods=["POST"])
+@requires_auth()
+def set_signature():
+    signature = request.form.get("signature", DEFAULTS["signature"])
+
+    with Store(STORE) as s:
+        s["signature"] = signature 
 
     return redirect(url_for("templates_panel"))
