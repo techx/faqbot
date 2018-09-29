@@ -41,6 +41,16 @@ def gen_defaults(defaults, name):
     if not os.path.exists(store_path(name)):
         store = copy.deepcopy(defaults)
         save_config(store, name)
+    else:
+        # We know the store exists, but see if any new
+        # keys popped up in defaults.
+        loaded_config = load_config(name)
+        new_keys = set(defaults.keys()) - set(loaded_config.keys())
+
+        for new_key in new_keys:
+            loaded_config[new_key] = copy.deepcopy(defaults[new_key])
+
+        save_config(loaded_config, name)
 
 
 class Store(object):
