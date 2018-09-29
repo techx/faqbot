@@ -19,10 +19,10 @@ import random
 
 DEFAULTS = {
     "enabled": True,
-    "templates": COMMANDS,
+    "templates": COMMANDS,  # Import defaults from legacy.
     "autosign": False,
     "signature": "Hackbot",
-}  # Import defaults from legacy.
+}
 
 STORE = "templates"
 NEWLINE = "<br>"
@@ -67,6 +67,10 @@ class Templates(Feature):
             with Store(STORE) as s:
                 if command in s["templates"] and s["enabled"]:
                     reply = s["templates"][command]
+
+                    if s["autosign"]:
+                        reply += 2*NEWLINE + generate_closing()
+
                     reply_email(reply_object, reply)
 
                     return
