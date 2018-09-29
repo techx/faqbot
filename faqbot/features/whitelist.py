@@ -50,6 +50,7 @@ def is_whitelisted(body):
 
     return is_whitelisted_internal(body, whitelist=whitelist)
 
+
 def is_whitelisted_internal(body, whitelist=[]):
     """This is a special method that is used by the mail parsing script to
     figure out of any of the callbacks must be triggered or not. This hook
@@ -63,7 +64,7 @@ def is_whitelisted_internal(body, whitelist=[]):
     parsed = message_from_string(body)
     from_address = parsed["From"]
     _, address = parseaddr(from_address)
-    
+
     return address in whitelist
 
 
@@ -96,5 +97,5 @@ def disable_whitelist():
 def config_whitelist():
     with Store(STORE) as s:
         s["whitelist"] = request.form.get("whitelist").split()
-        
+
     return redirect(url_for("whitelist_panel"))

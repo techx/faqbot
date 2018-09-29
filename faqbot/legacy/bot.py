@@ -1,11 +1,12 @@
-'''
+"""
     This was written by Shreyas Kapur in collaboration with 
     Michael Kaminsky
     https://github.com/mkaminsky11
-'''
+"""
 
 from config import *
-#from faq import *
+
+# from faq import *
 import quill
 import email
 from email.utils import getaddresses, parseaddr
@@ -20,6 +21,7 @@ import email_finder
 
 import pickle
 from commands import *
+
 
 class Idler(object):
     def __init__(self, conn, last_id):
@@ -55,11 +57,11 @@ class Idler(object):
                     self.event.clear()
                     self.dosync()
             except Exception as e:
-                continue # TO-DO Better error handling.
+                continue  # TO-DO Better error handling.
 
     # The method that gets called when a new email arrives.
     def dosync(self):
-        print "You\'ve Got Mail."
+        print "You've Got Mail."
         did_except = True
         while did_except:
             try:
@@ -81,7 +83,7 @@ class Idler(object):
         if id_list[-1] < self.last_id:
             new_mail_ids = []
         else:
-            for i in xrange(len(id_list)-1, 0, -1):
+            for i in xrange(len(id_list) - 1, 0, -1):
                 if id_list[i] == self.last_id:
                     break
                 else:
@@ -107,31 +109,31 @@ class Idler(object):
 
             try:
                 for part in flanker_msg.parts:
-                    if part.body.encode('ascii', 'ignore').startswith(TRIGGER):
-                        body = part.body.encode('ascii', 'ignore')
+                    if part.body.encode("ascii", "ignore").startswith(TRIGGER):
+                        body = part.body.encode("ascii", "ignore")
                         break
             except Exception as e:
                 pass
 
             # If body is still null, just look for this stuff
             if body == "null":
-                for l in raw_email.split('\n'):
+                for l in raw_email.split("\n"):
                     if l.startswith(TRIGGER):
                         body = l
 
             # CR-LF ugh
-            body = body.replace('\r', '')
+            body = body.replace("\r", "")
 
             COMMANDS = load_commands()
 
             if body.startswith(TRIGGER) and "From" in email_message:
-                if len(body.split(' ')) >= 2:
-                    command = body.split(' ')[1].strip()
+                if len(body.split(" ")) >= 2:
+                    command = body.split(" ")[1].strip()
 
                     # Ugly custom rule
-                    if command.startswith('edu'):
+                    if command.startswith("edu"):
                         command = "edu"
-                    if command.startswith('mixed'):
+                    if command.startswith("mixed"):
                         command = "mixed"
 
                     # Hacky
@@ -142,27 +144,33 @@ class Idler(object):
                 else:
                     command = "faq"
 
-                print "Request from {} for subject {} with command {}.".format(email_message["From"], email_message["Subject"], command)
-                tos = email_message.get_all('to', [])
-                ccs = email_message.get_all('cc', [])
-                all_recipients = getaddresses(tos + ccs) + [parseaddr(email_message["Reply-To"] or email_message["From"])]
+                print "Request from {} for subject {} with command {}.".format(
+                    email_message["From"], email_message["Subject"], command
+                )
+                tos = email_message.get_all("to", [])
+                ccs = email_message.get_all("cc", [])
+                all_recipients = getaddresses(tos + ccs) + [
+                    parseaddr(email_message["Reply-To"] or email_message["From"])
+                ]
 
-                if command.startswith('template'):
-                    lines = body.strip().split('\n')
+                if command.startswith("template"):
+                    lines = body.strip().split("\n")
                     new_command = lines[0].split()[2]
-                    content = '<br>\n'.join(lines[1:])
-                    print 'Request from {} for new command {} with body:'.format(email_message["From"], new_command)
+                    content = "<br>\n".join(lines[1:])
+                    print "Request from {} for new command {} with body:".format(
+                        email_message["From"], new_command
+                    )
                     print content
                     COMMANDS[new_command] = content
                     save_commands(COMMANDS)
                     return
 
-                if command.startswith('whitelist'):
+                if command.startswith("whitelist"):
                     # Compute the whitelist email
                     wl_email = None
-                    for line in body.split('\n'):
+                    for line in body.split("\n"):
                         if line.startswith(TRIGGER):
-                            tokens = line.split(' ')
+                            tokens = line.split(" ")
                             if len(tokens) >= 3:
                                 wl_email = tokens[2]
 
@@ -174,13 +182,17 @@ class Idler(object):
                     # Post to quill
                     quill.post_wl(quill.get_wl() + [wl_email])
 
-                    content = COMMANDS['whitelist'].format(email=wl_email) + FOOTER
+                    content = COMMANDS["whitelist"].format(email=wl_email) + FOOTER
                 else:
                     if command not in COMMANDS:
                         return
                     content = COMMANDS[command] + FOOTER
 
-                reply_sujet = "Re: " + email_message["Subject"] if not email_message['Subject'].startswith('Re:') else email_message["Subject"]
+                reply_sujet = (
+                    "Re: " + email_message["Subject"]
+                    if not email_message["Subject"].startswith("Re:")
+                    else email_message["Subject"]
+                )
                 recipients = []
                 for r in all_recipients:
                     recipients.append(r[1])
@@ -193,8 +205,8 @@ class Idler(object):
 
                 print recipients
 
-                msg = MIMEText(content, 'html')
-                msg['Subject'] = reply_sujet
+                msg = MIMEText(content, "html")
+                msg["Subject"] = reply_sujet
                 msg["Message-ID"] = email.utils.make_msgid()
                 msg["In-Reply-To"] = email_message["Message-ID"]
                 msg["References"] = email_message["Message-ID"]
@@ -206,8 +218,10 @@ class Idler(object):
                 s.sendmail(MAIL_FROM, recipients, msg.as_string())
                 s.quit()
 
+
 import os
-if not os.path.exists('faq.pkl'):
+
+if not os.path.exists("faq.pkl"):
     pickle_faq()
 
 # Set the following two lines to your creds and server
@@ -237,7 +251,7 @@ print "Client started on {}, waiting for emails.".format(MAIL_USER)
 #         break
 
 # set debug to false to prevent multiple instances of faqbot on production
-app.run(host='0.0.0.0', port=8114, debug=False)
+app.run(host="0.0.0.0", port=8114, debug=False)
 
 idler.stop()
 idler.join()

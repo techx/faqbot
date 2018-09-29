@@ -12,6 +12,7 @@ from faqbot.features.templates import Templates
 
 import traceback
 
+
 def triggered_email(body, argv, reply_object):
     """This routine gets triggered when an @faqbot
     body message is sent. It is more accurate that
@@ -30,6 +31,7 @@ def triggered_email(body, argv, reply_object):
             f.triggered_callback(body, argv, reply_object)
         except Exception as e:
             print traceback.format_exc()
+
 
 def raw_email(parsed, raw, reply_object):
     """If no trigger is found, this routine is fired.

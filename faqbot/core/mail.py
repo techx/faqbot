@@ -5,11 +5,11 @@ be like this for now, and do all the new stuff in
 the callbacks.
 """
 
-'''
+"""
     This was written by Shreyas Kapur in collaboration with 
     Michael Kaminsky
     https://github.com/mkaminsky11
-'''
+"""
 
 from faqbot.config import *
 from faqbot.core.store import load_config
@@ -28,6 +28,7 @@ import faqbot.legacy.email_finder as email_finder
 import pickle
 
 import faqbot.core.callbacks as callbacks
+
 
 class Idler(object):
     def __init__(self, conn, last_id):
@@ -63,11 +64,11 @@ class Idler(object):
                     self.event.clear()
                     self.dosync()
             except Exception as _:
-                continue # TO-DO Better error handling.
+                continue  # TO-DO Better error handling.
 
     # The method that gets called when a new email arrives.
     def dosync(self):
-        print "You\'ve Got Mail."
+        print "You've Got Mail."
         did_except = True
         while did_except:
             try:
@@ -89,7 +90,7 @@ class Idler(object):
         if id_list[-1] < self.last_id:
             new_mail_ids = []
         else:
-            for i in xrange(len(id_list)-1, 0, -1):
+            for i in xrange(len(id_list) - 1, 0, -1):
                 if id_list[i] == self.last_id:
                     break
                 else:
@@ -115,7 +116,7 @@ class Idler(object):
 
             try:
                 for part in flanker_msg.parts:
-                    pp = part.body.encode('ascii', 'ignore')
+                    pp = part.body.encode("ascii", "ignore")
                     if start_trigger(pp, TRIGGERS):
                         body = pp
                         break
@@ -124,31 +125,40 @@ class Idler(object):
 
             # If body is still null, just look for this stuff
             if body == "null":
-                for l in raw_email.split('\n'):
+                for l in raw_email.split("\n"):
                     if start_trigger(l, TRIGGERS):
                         body = l
 
             # CR-LF ugh
-            body = body.replace('\r', '')
+            body = body.replace("\r", "")
 
-            tos = email_message.get_all('to', [])
-            ccs = email_message.get_all('cc', [])
-            all_recipients = getaddresses(tos + ccs) + [parseaddr(email_message["Reply-To"] or email_message["From"])]
+            tos = email_message.get_all("to", [])
+            ccs = email_message.get_all("cc", [])
+            all_recipients = getaddresses(tos + ccs) + [
+                parseaddr(email_message["Reply-To"] or email_message["From"])
+            ]
 
             reply_object = {
-                'subject': email_message["Subject"],
-                'all_recipients': all_recipients,
-                'raw_email': raw_email,
-                'msg_id': email_message["Message-ID"]
+                "subject": email_message["Subject"],
+                "all_recipients": all_recipients,
+                "raw_email": raw_email,
+                "msg_id": email_message["Message-ID"],
             }
 
-            if start_trigger(body, TRIGGERS) and "From" in email_message and is_whitelisted(raw_email):
-                print "Request from {} for subject {}.".format(email_message["From"], email_message["Subject"])
-                
+            if (
+                start_trigger(body, TRIGGERS)
+                and "From" in email_message
+                and is_whitelisted(raw_email)
+            ):
+                print "Request from {} for subject {}.".format(
+                    email_message["From"], email_message["Subject"]
+                )
+
                 argv = [x.strip() for x in body.split()]
                 callbacks.triggered_email(body, argv, reply_object)
             else:
                 callbacks.raw_email(flanker_msg, raw_email, reply_object)
+
 
 def start_mail_thread():
     print "Starting mail thread!"
