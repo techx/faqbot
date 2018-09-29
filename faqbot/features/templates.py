@@ -14,12 +14,36 @@ from faqbot.core.store import gen_defaults, load_config, Store
 
 from flask import request, render_template, redirect, url_for
 
-DEFAULTS = {"enabled": True, "templates": COMMANDS}  # Import defaults from legacy.
+import datetime
+import random
+
+DEFAULTS = {"enabled": True, "templates": COMMANDS, "autosign": False, "signature": "Hackbot"}  # Import defaults from legacy.
 
 STORE = "templates"
+NEWLINE = "<br>"
 
 gen_defaults(DEFAULTS, STORE)
 
+
+def generate_closing():
+    """Helper function that generates a closing signature.
+    The signature doesn't start with any new lines, and is
+    up to the caller to add the <br> tags.
+    """
+
+    now = datetime.datetime.now()
+
+    time_options = [
+        (4 <= now.weekday() <= 6, "Have a great weekend!"),
+        (5 <= now.hour < 8, "Have a good evening!"),
+        (True, "Have a great week!"),
+    ]
+
+    signoff_options = ["Best", "Cheers", "Regards"]
+
+    with Store(STORE) as s:
+        return next(option + 2*NEWLINE for condition, option in time_options if condition) +
+               random.choice(signoff_options) + ',' + NEWLINE + s["signature"]
 
 class Templates(Feature):
     @staticmethod
