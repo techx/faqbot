@@ -17,7 +17,12 @@ from flask import request, render_template, redirect, url_for
 import datetime
 import random
 
-DEFAULTS = {"enabled": True, "templates": COMMANDS, "autosign": False, "signature": "Hackbot"}  # Import defaults from legacy.
+DEFAULTS = {
+    "enabled": True,
+    "templates": COMMANDS,
+    "autosign": False,
+    "signature": "Hackbot",
+}  # Import defaults from legacy.
 
 STORE = "templates"
 NEWLINE = "<br>"
@@ -42,8 +47,16 @@ def generate_closing():
     signoff_options = ["Best", "Cheers", "Regards"]
 
     with Store(STORE) as s:
-        return next(option + 2*NEWLINE for condition, option in time_options if condition) +
-               random.choice(signoff_options) + ',' + NEWLINE + s["signature"]
+        return (
+            next(
+                option + 2 * NEWLINE for condition, option in time_options if condition
+            )  # Have a great something.
+            + random.choice(signoff_options)
+            + ","
+            + NEWLINE  # Best,
+            + s["signature"]  # Hackbot
+        )
+
 
 class Templates(Feature):
     @staticmethod
