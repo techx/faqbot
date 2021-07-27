@@ -28,8 +28,8 @@ ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "P9Jt_B=uMvgu6#EG")
 """
 
 # IMAP server details.
-IMAP_SERVER = "imap.gmail.com"
-SMTP_SERVER = "smtp.gmail.com"
+IMAP_SERVER = ["imap.gmail.com"] # if you have a custom Port [serverDNS, port]
+SMTP_SERVER = ["smtp.gmail.com"] # if you have a custom Port [serverDNS, port]
 MAIL_USER = "admin@hackmit.org"
 MAIL_PASSWORD = "CHANGE THIS"
 
