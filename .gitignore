@@ -1,11 +1,6 @@
-config.py
-config_server.py
-defaults.py
-*.pyc
-*.pkl
-*.p
-env/
-tests/
-visa/
+*.DS_Store
 .vscode/
-__pycache__/
+
+*.pyc
+
+pip_modules/
