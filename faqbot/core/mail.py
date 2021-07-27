@@ -153,10 +153,10 @@ class Idler(object):
 def start_mail_thread():
     print "Starting mail thread!"
     # Set the following two lines to your creds and server
-    mail = imaplib2.IMAP4_SSL(IMAP_SERVER)
+    mail = imaplib2.IMAP4_SSL(*IMAP_SERVER)
     mail.login(MAIL_USER, MAIL_PASSWORD)
 
-    mail.select("[Gmail]/All Mail", readonly=True)
+    mail.select(MAIL_BOX, readonly=True)
 
     result, data = mail.search(None, "ALL")
 

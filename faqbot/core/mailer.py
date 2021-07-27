@@ -86,7 +86,7 @@ def reply_email(reply_object, body, attach=None, attach_fn="file.pdf", reply_one
 
     msg["From"] = MAIL_FROM
 
-    s = smtplib.SMTP_SSL(SMTP_SERVER)
+    s = smtplib.SMTP_SSL(*SMTP_SERVER)
     s.login(SEND_MAIL_USER, SEND_MAIL_PASSWORD)
     s.sendmail(MAIL_FROM, recipients, msg.as_string())
     s.quit()
