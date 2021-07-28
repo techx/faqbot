@@ -1,11 +1,13 @@
+*.DS_Store
+.vscode/
 config.py
 config_server.py
 defaults.py
 *.pyc
+__pycache__/
 *.pkl
 *.p
 env/
 tests/
 visa/
-.vscode/
-__pycache__/
+pip_modules/
