@@ -1,4 +1,4 @@
-Flask==0.12.2
+Flask==1.0
 dkimpy==0.8.1
 email-reply-parser==0.5.12
 flanker==0.4.38
