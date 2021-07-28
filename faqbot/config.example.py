@@ -2,6 +2,7 @@
 environment or from this file.
 """
 
+from faqbot.config import MAIL_BOX
 import os
 
 """
@@ -28,10 +29,11 @@ ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "P9Jt_B=uMvgu6#EG")
 """
 
 # IMAP server details.
-IMAP_SERVER = "imap.gmail.com"
-SMTP_SERVER = "smtp.gmail.com"
+IMAP_SERVER = ["imap.gmail.com"] # if you have a custom Port [serverDNS, port]
+SMTP_SERVER = ["smtp.gmail.com"] # if you have a custom Port [serverDNS, port]
 MAIL_USER = "admin@hackmit.org"
 MAIL_PASSWORD = "CHANGE THIS"
+MAIL_BOX = "[Gmail]/All Mail"
 
 # SMTP server details.
 SEND_MAIL_USER = MAIL_USER
