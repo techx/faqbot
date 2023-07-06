@@ -8,5 +8,5 @@ psutil==5.6.6
 pyjwt==2.4.0
 requests==2.20.0
 scikit-learn==0.19.1
-scipy==1.1.0
+scipy==1.10.0
 validate-email==1.3
